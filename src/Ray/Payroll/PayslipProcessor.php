@@ -15,7 +15,7 @@ class PayslipProcessor {
      */
     public function __construct($employee)
     {
-        $this->employees[] = $employee;
+        $this->employees = $employee;
     }
 
 	/**
@@ -25,7 +25,7 @@ class PayslipProcessor {
 	 * $return void
      */
 	public function setEmployees(array $employee) {
-		$this->employees[] = $employee;
+		$this->employees = $employee;
 	}
 	
 	public function getEmployees() {

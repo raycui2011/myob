@@ -72,20 +72,18 @@ class EmployeeTest extends PHPUnit_Framework_TestCase
 		$oEmployee_1 = new Employee($this->firstName, $this->lastName, $this->annualSalary, $this->superRate, $this->paymentStartDate);
 		$oEmployee_2 = new Employee('first name', 'last name', 37000, 9, '21-07-2014');
 		//var_dump($oEmployee);
-		
+		$mock = $this->getMockBuilder($classname)
+          ->disableOriginalConstructor()
+          ->getMock();
 		$test = array($oEmployee_1, $oEmployee_2);
-		
-		var_dump($test);
-		/*$mockProcessor = $this->getMockBuilder('\Ray\Payroll\PayslipProcessor')
+		$mockProcessor = $this->getMockBuilder('\Ray\Payroll\PayslipProcessor')
 		  ->setMethods(array('__construct'))
-		  ->setConstructorArgs((array)$test)	
-		  ->getMock();*/
-		$obj = new PayslipProcessor($test);
-		var_dump($obj->getEmployees());
-		//$result[0] = $mockProcessor->generatePayslip();
-		//var_dump($result[0][0]);
-		//$object = $result[0];
-		//$this->assertEquals();
+		  ->disableOriginalConstructor()	
+		  ->getMock();
+		$mockProcessor->setEmployees($test);
+		var_dump($mockProcessor->getEmployees());
+		$result[0] = $mockProcessor->generatePayslip();
+		var_dump($result[0]);
 		
 	}
 	
